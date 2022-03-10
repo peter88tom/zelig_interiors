@@ -132,3 +132,4 @@ dmypy.json
 admin/.env
 store/migrations/*
 uploads
+original_theme
