@@ -14,9 +14,11 @@ class Customer(models.Model):
 
     @staticmethod
     def get_customer_by_email(email):
+        print(email)
         try:
-            return Customer.objects.get(email= email)
-        except:
+            return Customer.objects.get(email=email)
+        except Exception as e:
+            print(e)
             return False
 
     def isExists(self):
