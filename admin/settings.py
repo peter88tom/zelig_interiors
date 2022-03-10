@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 import environ
 
 env = environ.Env()
@@ -117,5 +118,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/opt/homebrew/var/www/websites/zelig_interior/static/'
+]
+
+#MEDIA_URL = '/media/'
+#MEDIA_ROOT = '/opt/homebrew/var/www/websites/bcbr/media'
+
+
+#STATIC_URL = '/static/'
 MEDIA_URL = "/image/download/"
 MEDIA_ROOT = BASE_DIR
