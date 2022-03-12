@@ -8,7 +8,7 @@ class Login(View):
     return_url = None
 
     def get(self, request):
-        Login.return_url = request.GET.get ('return_url')
+        Login.return_url = request.GET.get('return_url')
         return render(request, 'store/login_registration.html')
 
     def post(self, request):
@@ -23,17 +23,18 @@ class Login(View):
                 request.session['customer'] = customer.id
 
                 if Login.return_url:
-                    return HttpResponseRedirect(Login.return_url)
+                    return render()
+                    #return HttpResponseRedirect(Login.return_url)
                 else:
                     Login.return_url = None
                     return redirect('homepage')
             else:
-                error_message = 'Invalid !!'
+                error_message = 'Invalid email or password'
         else:
-            error_message = 'Invalid !!'
+            error_message = 'Invalid email or password'
 
         print (email, password)
-        return render(request, 'login.html', {'error': error_message})
+        return render(request, 'store/login_registration.html', {'error': error_message})
 
 
 def logout(request):

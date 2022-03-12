@@ -8,10 +8,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <h1 class="page-title">Login &amp; Register</h1>
+                        <h1 class="page-title">Login or Register</h1>
                         <ul class="breadcrumb">
                             <li><a href="{% url 'homepage' %}">Home</a></li>
-                            <li class="current"><span>Login &amp; Register</span></li>
+                            <li class="current"><span>Login or Register</span></li>
                         </ul>
                     </div>
                 </div>
@@ -23,19 +23,34 @@
         <div class="main-content-wrapper">
             <div class="page-content-inner pt--75 pb--80">
                 <div class="container">
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                       {% if error%}
+                      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                         {{error}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                       {% endif %}
+
+                    </div>
+                  </div>
                     <div class="row">
                         <div class="col-md-6 mb-sm--50">
                             <div class="login-box">
                                 <h3 class="heading__tertiary mb--30">Login</h3>
-                                <form class="form form--login">
+                                <form class="form form--login" action="/login" method="POST">
+                                  {% csrf_token %}
+
                                     <div class="form__group mb--20">
-                                        <label class="form__label" for="username_email">Username or email address <span class="required">*</span></label>
-                                        <input type="text" class="form__input" id="username_email" name="username_email">
+                                        <label class="form__label" for="username_email">Email address <span class="required">*</span></label>
+                                        <input type="text" class="form__input" id="username_email" name="email" value="{{values.email}}" required="">
                                     </div>
                                     <div class="form__group mb--20">
                                        <label class="form__label" for="login_password">Password <span class="required">*</span></label>
-                                        <input type="password" class="form__input" id="login_password" name="login_password">
+                                        <input type="password" class="form__input" id="login_password" name="password" required="">
                                     </div>
+
+
                                     <div class="d-flex align-items-center mb--20">
                                         <div class="form__group mr--30">
                                             <input type="submit" value="Log in" class="btn btn-size-sm">
@@ -54,7 +69,20 @@
                         <div class="col-md-6">
                             <div class="register-box">
                                 <h4 class="heading__tertiary mb--30">Register</h4>
-                                <form class="form form--login">
+                                <form class="form form--login" action="/signup" method="POST">
+                                      {% csrf_token %}
+                                  <div class="form__group mb--20">
+                                       <label class="form__label" for="first_name">First Name <span class="required">*</span></label>
+                                        <input type="password" class="form__input" id="first_name" name="first_name" required="">
+                                    </div>
+
+
+                                  <div class="form__group mb--20">
+                                       <label class="form__label" for="last_name">Last Name <span class="required">*</span></label>
+                                        <input type="password" class="form__input" id="last_name" name="last_name" required="">
+                                    </div>
+
+
                                     <div class="form__group mb--20">
                                         <label class="form__label" for="email">Email address <span class="required">*</span></label>
                                         <input type="email" class="form__input" id="email" name="email">

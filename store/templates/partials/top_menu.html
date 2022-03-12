@@ -38,7 +38,13 @@
                                                         <span class="mm-text">Login | Register</span>
                                                     </a>
                                                 </li>
-
+                                       {% if request.session.customer %}
+                                              <li class="mainmenu__item">
+                                                    <a href="{% url 'logout' %}" class="mainmenu__link">
+                                                        <span class="mm-text">Logout</span>
+                                                    </a>
+                                                </li>
+                                        {% endif %}
 
                                             </ul>
                                         </nav>
@@ -54,7 +60,7 @@
                                                 <div class="header-toolbar__item header-toolbar--minicart-btn">
                                                     <a href="#miniCart" class="header-toolbar__btn toolbar-btn">
                                                         <i class="la la-shopping-cart"></i>
-                                                        <span>01</span>
+                                                        <span>{{request.session.cart.keys|length}}</span>
                                                     </a>
                                                 </div>
                                                 <div class="header-toolbar__item d-block d-lg-none">
