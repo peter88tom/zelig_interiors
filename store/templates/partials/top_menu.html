@@ -32,18 +32,25 @@
                                                         <span class="mm-text">Contact Us</span>
                                                     </a>
                                                 </li>
-
-                                              <li class="mainmenu__item">
-                                                    <a href="{% url 'login' %}" class="mainmenu__link">
-                                                        <span class="mm-text">Login | Register</span>
+                                            {% if request.session.customer %}
+                                               <li class="mainmenu__item">
+                                                    <a href="#" class="mainmenu__link">
+                                                        <span class="mm-text">My Account</span>
                                                     </a>
                                                 </li>
-                                       {% if request.session.customer %}
+
                                               <li class="mainmenu__item">
                                                     <a href="{% url 'logout' %}" class="mainmenu__link">
                                                         <span class="mm-text">Logout</span>
                                                     </a>
                                                 </li>
+                                              {% else %}
+                                               <li class="mainmenu__item">
+                                                    <a href="{% url 'login' %}" class="mainmenu__link">
+                                                        <span class="mm-text">Login | Register</span>
+                                                    </a>
+                                                </li>
+
                                         {% endif %}
 
                                             </ul>
