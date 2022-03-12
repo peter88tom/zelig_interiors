@@ -8,6 +8,7 @@ from .views.checkout import CheckOut
 from .views.orders import OrderView
 from .middlewares.auth import  auth_middleware
 from .views.my_account import my_account
+from .views.shop import shop
 
 
 urlpatterns = [
@@ -22,5 +23,7 @@ urlpatterns = [
     path('orders', auth_middleware(OrderView.as_view()), name='orders'),
 
     path("my-account", my_account, name='my-account'),
+    path("shop", shop, name="shop"),
+
 
 ]
