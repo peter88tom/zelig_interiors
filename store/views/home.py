@@ -53,9 +53,9 @@ def home(request):
     # data = {}
     # data['products'] = products
     # data['categories'] = categories
-
-    print('you are : ', request.session.get('email'))
-    #return render(request, 'store/index.html', data)
+    #
+    # print('you are : ', request.session.get('email'))
+    # #return render(request, 'store/index.html', data)
     return render(request, 'store/index.html')
 
 
