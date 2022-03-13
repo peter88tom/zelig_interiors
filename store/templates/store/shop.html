@@ -138,7 +138,7 @@
                                   {% endfor %}
                                   {% else %}
                                   <div class="col-xl-12 col-sm-6 mb--50 text-center">
-                                    <i>There is not product(s) at the moment</i>
+                                    <i>There is no product(s) at the moment</i>
                                   </div>
                                   {% endif %}
 
@@ -162,7 +162,7 @@
                                     <h3 class="widget-title mb--25">Category</h3>
                                     <ul class="widget-list category-list">
                                         <li>
-                                            <a href="#">
+                                            <a href="/shop">
                                                 <span class="category-title">All</span>
                                                 <i class="fa fa-angle-double-right"></i>
                                             </a>
@@ -170,7 +170,7 @@
 
                                       {% for category in categories %}
                                         <li>
-                                            <a href="/shop/?category={{category.id}}">
+                                            <a href="/shop?category={{category.id}}">
                                                 <span class="category-title">{{category.name}}</span>
                                                 <i class="fa fa-angle-double-right"></i>
                                             </a>
