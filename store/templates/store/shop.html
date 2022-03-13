@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="col-md-7">
                                         <div class="shop-toolbar__right d-flex justify-content-md-end justify-content-start flex-sm-row flex-column">
-                                            <p class="product-pages">Showing Result  {{products|length}} Among {{products|length}}</p>
+                                            <p class="product-pages">Showing Result  {{products|length}} of {{products|length}}</p>
                                             <div class="product-view-mode ml--50 ml-xs--0">
                                                 <a class="active" href="#" data-target="grid">
                                                     <img src="{% static 'assets/img/icons/grid.png' %}" alt="Grid">
@@ -90,11 +90,37 @@
                                                         <div class="product-price-wrapper">
                                                             <span class="money">{{product.price|currency}}</span>
                                                         </div>
-                                                        <a href="cart.html" class="add-to-cart pr--15">
-                                                            <i class="la la-plus"></i>
-                                                            <span>Add To Cart</span>
+
+                                                      {% if product|is_in_cart:request.session.cart %}
+                                                      <form action="/#{{product.id}}"  method="post">
+                                                        {% csrf_token %}
+                                                        <input hidden type="text" name='product' value='{{product.id}}'>
+                                                        <input hidden type="text" name='remove' value='True'>
+                                                        <button type="submit" class="btn btn-sm" value=" - " style="padding:10px; padding-top:0px; padding-bottom:0px; font-size:12px;">-</button>
+                                                      </form>
+
+                                                        <a href="#" class="btn btn-sm" style="padding:4px; padding-top:0px; padding-bottom:0px; font-size:12px;">
+                                                          {{product|cart_quantity:request.session.cart}} in Cart
                                                         </a>
+
+                                                      <form action="/#{{product.id}}" method="post">
+                                                          {% csrf_token %}
+                                                          <input hidden type="text" name='product' value='{{product.id}}'>
+                                                        <button type="submit" class="btn btn-sm" value=" + " style="padding:4px; padding-top:0px; padding-bottom:0px; font-size:12px;">+</button>
+                                                        </form>
+
+                                                      {% else %}
+                                                      <form action="/#{{product.id}}" method="POST" class="btn-block">
+							                                          {% csrf_token %}
+                                                        <input hidden type="text" name='product' value='{{product.id}}'>
+                                                      <button type="submit" class="btn btn-sm" style="padding:4px; padding-top:0px; padding-bottom:0px; font-size:12px; font-size:12px;">
+                                                        Add To Cart
+                                                        </button>
+                                                      </form>
+                                                      {% endif %}
+
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -120,17 +146,49 @@
 
                                                     </div>
                                                     <p class="product-short-description mb--20">
-                                                        Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas magna molestie a. Proin ac ex maximus, ultrices justo eget, sodales orci. Aliquam egestas libero ac turpis pharetra
+                                                        {% if product.description %}
+                                                            {{ product.description }}
+                                                        {% else %}
+                                                            -
+                                                        {% endif %}
                                                     </p>
+
+                                                   {% if product|is_in_cart:request.session.cart %}
                                                     <div class="ft-product-action-list d-flex align-items-center">
-                                                        <a href="cart.html" class="btn btn-size-md">Add To Cart</a>
-                                                        <a href="wishlist.html" class="ml--20 action-btn">
+
+                                                      <form action="/#{{product.id}}"  method="post">
+                                                        {% csrf_token %}
+                                                        <input hidden type="text" name='product' value='{{product.id}}'>
+                                                        <input hidden type="text" name='remove' value='True'>
+                                                        <button type="submit" class="btn btn-sm" value=" - " style="padding:10px; padding-top:0px; padding-bottom:0px; font-size:12px;">-</button>
+                                                      </form>
+
+                                                        <a href="#" class="btn btn-size-md">{{product|cart_quantity:request.session.cart}} in Cart</a>
+
+                                                      <form action="/#{{product.id}}"  method="post">
+                                                        {% csrf_token %}
+                                                        <input hidden type="text" name='product' value='{{product.id}}'>
+                                                        <button type="submit" class="btn btn-sm" value=" + " style="padding:10px; padding-top:0px; padding-bottom:0px; font-size:12px;">+</button>
+                                                      </form>
+
+                                                    </div>
+                                                  {% else %}
+
+                                                   <div class="ft-product-action-list d-flex align-items-center">
+                                                      <form action="/#{{product.id}}" method="POST" class="btn-block">
+							                                          {% csrf_token %}
+                                                        <input hidden type="text" name='product' value='{{product.id}}'>
+                                                        <a href="#" class="btn btn-size-md">Add To Cart</a>
+                                                      </form>
+                                                        <a href="#" class="ml--20 action-btn">
                                                             <i class="la la-heart-o"></i>
                                                         </a>
-                                                        <a href="wishlist.html" class="ml--20 action-btn">
+                                                        <a href="#" class="ml--20 action-btn">
                                                             <i class="la la-repeat"></i>
                                                         </a>
                                                     </div>
+
+                                                  {% endif %}
                                                 </div>
                                             </div>
                                         </div>
