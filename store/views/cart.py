@@ -11,6 +11,7 @@ class Cart(View):
         product = request.POST.get('product')
         remove = request.POST.get('remove')
         cart = request.session.get('cart')
+        print(request.get_full_path())
 
         if cart:
             quantity = cart.get(product)
@@ -30,7 +31,7 @@ class Cart(View):
             cart[product] = 1
 
         request.session['cart'] = cart
-        return redirect(request.get_full_path())
+        return redirect(request.META['HTTP_REFERER'])
 
     def get(self, request):
         ids = list(request.session.get('cart').keys())

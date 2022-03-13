@@ -11,7 +11,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <h1 class="page-title">Shop Left Sidebar</h1>
+                        <h1 class="page-title">Shop</h1>
                         <ul class="breadcrumb">
                             <li><a href="{% url 'homepage' %}">Home</a></li>
                             <li class="current"><span>Shop</span></li>
@@ -92,7 +92,7 @@
                                                         </div>
 
                                                       {% if product|is_in_cart:request.session.cart %}
-                                                      <form action="/#{{product.id}}"  method="post">
+                                                      <form action="/cart#{{product.id}}"  method="post">
                                                         {% csrf_token %}
                                                         <input hidden type="text" name='product' value='{{product.id}}'>
                                                         <input hidden type="text" name='remove' value='True'>
@@ -103,14 +103,14 @@
                                                           {{product|cart_quantity:request.session.cart}} in Cart
                                                         </a>
 
-                                                      <form action="/#{{product.id}}" method="post">
+                                                      <form action="/cart#{{product.id}}" method="post">
                                                           {% csrf_token %}
                                                           <input hidden type="text" name='product' value='{{product.id}}'>
                                                         <button type="submit" class="btn btn-sm" value=" + " style="padding:4px; padding-top:0px; padding-bottom:0px; font-size:12px;">+</button>
                                                         </form>
 
                                                       {% else %}
-                                                      <form action="/#{{product.id}}" method="POST" class="btn-block">
+                                                      <form action="/cart#{{product.id}}" method="POST" class="btn-block">
 							                                          {% csrf_token %}
                                                         <input hidden type="text" name='product' value='{{product.id}}'>
                                                       <button type="submit" class="btn btn-sm" style="padding:4px; padding-top:0px; padding-bottom:0px; font-size:12px; font-size:12px;">
