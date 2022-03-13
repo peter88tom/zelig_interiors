@@ -23,18 +23,19 @@ class Login(View):
                 request.session['customer'] = customer.id
 
                 if Login.return_url:
-                    return render()
-                    #return HttpResponseRedirect(Login.return_url)
+                    return HttpResponseRedirect(Login.return_url)
                 else:
                     Login.return_url = None
                     return redirect('homepage')
             else:
-                error_message = 'Invalid email or password'
+                message = 'Invalid email or password'
+                message_status = 'danger'
         else:
-            error_message = 'Invalid email or password'
+            message = 'Invalid email or password'
+            message_status = 'danger'
 
         print (email, password)
-        return render(request, 'store/login_registration.html', {'error': error_message})
+        return render(request, 'store/login_registration.html', {'msg': message, 'status': message_status})
 
 
 def logout(request):
