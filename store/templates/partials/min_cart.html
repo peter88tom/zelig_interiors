@@ -1,4 +1,6 @@
  {% load static %}
+ {% load cart %}
+{% load custom_filter %}
 
             <div class="mini-cart-wrapper">
                 <div class="mini-cart__close">
@@ -11,30 +13,35 @@
                         <ul class="mini-cart__list">
                            {% for product in cart_items %}
                             <li class="mini-cart__product">
-                                <a href="#" class="mini-cart__product-remove">
+                              <form action="/#{{product.id}}" method="post">
+                                {% csrf_token %}
+                                <input hidden type="text" name='product' value='{{product.id}}'>
+                                <input hidden type="text" name='remove' value='True'>
+                                <button type="submit" value=" - " class="mini-cart__product-remove btn btn-sm" style="background:none; border:none;">
                                     <i class="la la-remove"></i>
-                                </a>
+                                </button>
+                                 </form>
                                 <div class="mini-cart__product-image">
                                     <img src="{{product.image.url}}" alt="products">
                                 </div>
                                 <div class="mini-cart__product-content">
                                     <a class="mini-cart__product-title" href="product-details.html">{{product.name}}.</a>
-                                    <span class="mini-cart__product-quantity">1 x $49.00</span>
+                                    <span class="mini-cart__product-quantity">{{product|cart_quantity:request.session.cart}} x {{product.price|currency}}</span>
                                 </div>
                             </li>
                            {%  endfor %}
                         </ul>
+                      <div class="mini-cart__total">
+                            <span>Subtotal</span>
+                            <span class="ammount">{{cart_items|total_cart_price:request.session.cart|currency}}</span>
+                        </div>
+                       <div class="mini-cart__buttons">
+                            <a  href="/cart"" class="btn btn-fullwidth btn-bg-primary mb--20">View Cart</a>
+                            <a href="#" class="btn btn-fullwidth btn-bg-primary">Checkout</a>
+                        </div>
                       {% else %}
                         No item(s) in the cart
                       {% endif %}
-                        <div class="mini-cart__total">
-                            <span>Subtotal</span>
-                            <span class="ammount">$98.00</span>
-                        </div>
-                        <div class="mini-cart__buttons">
-                            <a  href="/cart"" class="btn btn-fullwidth btn-bg-primary mb--20">View Cart</a>
-                            <a href="checkout.html" class="btn btn-fullwidth btn-bg-primary">Checkout</a>
-                        </div>
                     </div>
                 </div>
             </div>
