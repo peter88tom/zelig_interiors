@@ -40,14 +40,14 @@ def home(request):
     featured = Products.get_all_feature_products()
 
     # new product
-    new = Products.get_new_product()
+    new_products = Products.get_new_product()
 
     # best sale
     best_sales = Products.get_best_sale_product()
 
     data = {
       "featured":featured,
-      'new':new,
+      'new_products':new_products,
       'best_sales':best_sales,
     }
     return render(request, 'store/index.html', data)

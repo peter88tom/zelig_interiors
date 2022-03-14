@@ -33,7 +33,7 @@ class Products(models.Model):
 
     @staticmethod
     def get_new_product():
-        return Products.objects.get(is_new=True)
+        return Products.objects.filter(is_new=True).order_by("-id")[:1]
 
     @staticmethod
     def get_best_sale_product():

@@ -173,6 +173,8 @@
             <section class="feature-product-area mb--75 mb-md--55">
                 <div class="container">
                     <div class="row">
+                       {% if new_products %}
+                       {% for new in new_products %}
                         <div class="col-12">
                             <div class="feature-product bg-color" data-bg-color="#d7fbf9">
                                 <div class="feature-product__inner bg-color" data-bg-color="#e9fefd">
@@ -189,6 +191,10 @@
                                 </div>
                             </div>
                         </div>
+                      {% endfor %}
+                      {% else %}
+
+                      {% endif %}
                     </div>
                 </div>
             </section>
@@ -224,9 +230,7 @@
                         </div>
                       {% endfor %}
                       {% else %}
-                      <div class="col-12 text-center">
-                        There is no product at the moment
-                      </div>
+
                       {% endif %}
                     </div>
                 </div>
