@@ -18,7 +18,10 @@ class IndexContact(View):
         email_from = email
         recipient_list = [settings.EMAIL_HOST_USER,]
 
-        contact = Contact.objects.get()
+        try:
+          contact = Contact.objects.get()
+        except Contact.DoesNotExist:
+          contact = {}
 
         try:
           send_mail(subject, message, email_from, recipient_list)
@@ -38,7 +41,10 @@ class IndexContact(View):
         return render(request, 'store/contact.html', data)
 
     def get(self, request):
-        contact = Contact.objects.get()
+        try:
+          contact = Contact.objects.get()
+        except Contact.DoesNotExist:
+          contact = {}
         data = {
           'contact_info': contact
         }
