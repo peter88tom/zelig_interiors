@@ -2898,7 +2898,7 @@ a, button, .item-overlay, .global-overlay, .pagination li .page-number, .scroll-
         order: 2; } }
   .feature-product__title {
     color: #221f26;
-    font-size: 7.2rem;
+    font-size: 3.2rem;
     line-height: 1.1; }
     @media (max-width: 61.94em) {
       .feature-product__title {
