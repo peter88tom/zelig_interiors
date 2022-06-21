@@ -51,5 +51,12 @@ class IndexContact(View):
         return render(request, 'store/contact.html', data)
 
 
-def contact(request):
-    pass
+def get_contact(request):
+  try:
+    g_contact = Contact.objects.get()
+  except Contact.DoesNotExist:
+    g_contact = {}
+
+  return {
+    "contact_details": g_contact,
+  }

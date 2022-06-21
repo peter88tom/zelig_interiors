@@ -60,6 +60,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'store.views.cart_items.get',
+                'store.views.contact.get_contact',
             ],
         },
     },
