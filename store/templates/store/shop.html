@@ -70,22 +70,17 @@
                                                     <figure class="product-image--holder">
                                                         <img src="{{product.image.url}}" alt="Product">
                                                     </figure>
-                                                    <a href="product-details.html" class="product-overlay"></a>
+                                                    <a href="/shop/item/{{product.slug}}" class="product-overlay"></a>
                                                     <div class="product-action">
-                                                        <a data-bs-toggle="modal" data-bs-target="#productModal" class="action-btn">
+                                                        <a href="/shop/item/{{product.slug}}" class="action-btn">
                                                             <i class="la la-eye"></i>
                                                         </a>
-                                                        <a href="wishlist.html" class="action-btn">
-                                                            <i class="la la-heart-o"></i>
-                                                        </a>
-                                                        <a href="wishlist.html" class="action-btn">
-                                                            <i class="la la-repeat"></i>
-                                                        </a>
+
                                                     </div>
                                                 </div>
                                                 <div class="product-info">
 
-                                                    <h3 class="product-title"><a href="product-details.html">{{product.name}}</a></h3>
+                                                    <h3 class="product-title"><a href="/shop/item/{{product.slug}}">{{product.name}}</a></h3>
                                                     <div class="product-info-bottom">
                                                         <div class="product-price-wrapper">
                                                             <span class="money">{{product.price|currency}}</span>
@@ -127,18 +122,18 @@
                                         <div class="ft-product-list">
                                             <div class="product-inner">
                                                 <figure class="product-image">
-                                                    <a href="product-details.html">
+                                                    <a href="/shop/item/{{product.slug}}">
                                                         <img src="{{product.image.url}}" alt="Products">
                                                     </a>
                                                     <div class="product-thumbnail-action">
-                                                        <a data-bs-toggle="modal" data-bs-target="#productModal" class="action-btn quick-view">
+                                                        <a class="action-btn quick-view">
                                                             <i class="la la-eye"></i>
                                                         </a>
                                                     </div>
                                                 </figure>
                                                 <div class="product-info">
                                                     <h3 class="product-title mb--25">
-                                                        <a href="product-details.html">{{product.name}}</a>
+                                                        <a href="/shop/item/{{product.slug}}">{{product.name}}</a>
                                                     </h3>
 
                                                     <div class="product-price-wrapper mb--15 mb-sm--10">
@@ -156,7 +151,7 @@
                                                    {% if product|is_in_cart:request.session.cart %}
                                                     <div class="ft-product-action-list d-flex align-items-center">
 
-                                                      <form action="/#{{product.id}}"  method="post">
+                                                      <form action="/cart#{{product.id}}"  method="post">
                                                         {% csrf_token %}
                                                         <input hidden type="text" name='product' value='{{product.id}}'>
                                                         <input hidden type="text" name='remove' value='True'>
@@ -165,7 +160,7 @@
 
                                                         <a href="#" class="btn btn-size-md">{{product|cart_quantity:request.session.cart}} in Cart</a>
 
-                                                      <form action="/#{{product.id}}"  method="post">
+                                                       <form action="/cart#{{product.id}}" method="post">
                                                         {% csrf_token %}
                                                         <input hidden type="text" name='product' value='{{product.id}}'>
                                                         <button type="submit" class="btn btn-sm" value=" + " style="padding:10px; padding-top:0px; padding-bottom:0px; font-size:12px;">+</button>
@@ -175,17 +170,12 @@
                                                   {% else %}
 
                                                    <div class="ft-product-action-list d-flex align-items-center">
-                                                      <form action="/#{{product.id}}" method="POST" class="btn-block">
+                                                      <form action="/cart#{{product.id}}" method="POST" class="btn-block">
 							                                          {% csrf_token %}
                                                         <input hidden type="text" name='product' value='{{product.id}}'>
-                                                        <a href="#" class="btn btn-size-md">Add To Cart</a>
+                                                        <button type="submit" class="btn btn-size-md">Add To Cart</button>
                                                       </form>
-                                                        <a href="#" class="ml--20 action-btn">
-                                                            <i class="la la-heart-o"></i>
-                                                        </a>
-                                                        <a href="#" class="ml--20 action-btn">
-                                                            <i class="la la-repeat"></i>
-                                                        </a>
+
                                                     </div>
 
                                                   {% endif %}
@@ -193,6 +183,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                   {% endfor %}
                                   {% else %}
                                   <div class="col-xl-12 col-sm-6 mb--50 text-center">
@@ -203,7 +194,7 @@
 
                                 </div>
                             </div>
-                            <nav class="pagination-wrap">
+                            <!--<nav class="pagination-wrap">
                                 <ul class="pagination">
                                     <li><span class="page-number current">1</span></li>
                                     <li><a href="#" class="page-number">2</a></li>
@@ -212,7 +203,7 @@
                                     <li><span class="dot"></span></li>
                                     <li><a href="#" class="page-number">16</a></li>
                                 </ul>
-                            </nav>
+                            </nav>-->
                         </div>
                         <div class="col-xl-3 col-lg-4 order-lg-1">
                             <aside class="shop-sidebar">

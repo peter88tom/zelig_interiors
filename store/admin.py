@@ -8,6 +8,7 @@ from .models.contact import Contact
 
 class AdminProduct(admin.ModelAdmin):
     list_display = ['name', 'price', 'category']
+    prepopulated_fields = {"slug": ("name",)}
 
 
 class CategoryAdmin(admin.ModelAdmin):

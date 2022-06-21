@@ -102,21 +102,16 @@
                                                 <figure class="product-image--holder">
                                                     <img src="{{product.image.url}}" alt="Product">
                                                 </figure>
-                                                <a href="#" class="product-overlay"></a>
+                                                <a href="/shop/item/{{product.slug}}" class="product-overlay"></a>
                                                 <div class="product-action">
-                                                    <a data-bs-toggle="modal" data-bs-target="#productModal" class="action-btn">
+                                                    <a class="action-btn">
                                                         <i class="la la-eye"></i>
                                                     </a>
-                                                    <a href="#" class="action-btn">
-                                                        <i class="la la-heart-o"></i>
-                                                    </a>
-                                                    <a href="#" class="action-btn">
-                                                        <i class="la la-repeat"></i>
-                                                    </a>
+
                                                 </div>
                                             </div>
                                             <div class="product-info plr--20">
-                                                <h3 class="product-title"><a href="product-details.html">{{product.name}}</a></h3>
+                                                <h3 class="product-title"><a href="/shop/item/{{product.slug}}">{{product.name}}</a></h3>
                                                 <div class="product-info-bottom">
                                                     <div class="product-price-wrapper">
                                                         <span class="money">{{product.price|currency}}</span>
@@ -180,11 +175,11 @@
                                 <div class="feature-product__inner bg-color" data-bg-color="#e9fefd">
                                     <div class="feature-product__info">
                                         <p class="hastag">#New</p>
-                                        <h2 class="feature-product__title"><a href="#">{{new.name}}</a></h2>
+                                        <h2 class="feature-product__title"><a href="/shop/item/{{new.slug}}">{{new.name}}</a></h2>
                                         <a href="{% url 'shop' %}" class="feature-product__btn">Buy now</a>
                                     </div>
                                     <figure class="feature-product__image mb-sm--30">
-                                        <a href="#">
+                                        <a href="/shop/item/{{new.slug}}">
                                             <img src="{{new.image.url}}" alt="Feature Product">
                                         </a>
                                     </figure>
@@ -212,7 +207,7 @@
                             <div class="best-sale-product bg-color" data-bg-color="#f7f8f9">
                                 <div class="best-sale-product__inner bg-color" data-bg-color="#ffffff">
                                     <figure class="best-sale-product__img">
-                                        <a href="#">
+                                        <a href="/shop/item/{{best_sale.slug}}">
                                             <img src="{{best_sale.image.url}}" alt="{{best_sale.name}}">
                                         </a>
                                     </figure>

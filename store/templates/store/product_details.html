@@ -1,0 +1,162 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block content %}
+
+{% load cart %}
+{% load custom_filter %}
+
+
+ <!-- Breadcrumb area Start -->
+        <section class="page-title-area bg-image ptb--80" data-bg-image="{% static 'assets/img/bg/page_title_bg.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1 class="page-title">Shop</h1>
+                        <ul class="breadcrumb">
+                            <li><a href="{% url 'homepage' %}">Home</a></li>
+                            <li class="current"><span>Shop</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Breadcrumb area End -->
+
+        <!-- Main Content Wrapper Start -->
+        <div  class="main-content-wrapper">
+            <div class="shop-page-wrapper ptb--80">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-8 order-lg-2 mb-md--50">
+
+                            <div class="shop-products">
+
+                             <!-- start view of product -->
+                               <div class="row">
+                                  {% if products %}
+                                 {% for product in products %}
+                                  <div class="col-lg-6">
+                                      <div class="element-carousel slick-vertical-center"
+                                      data-slick-options='{
+                                          "slidesToShow": 1,
+                                          "slidesToScroll": 1,
+                                          "arrows": true,
+                                          "prevArrow": {"buttonClass": "slick-btn slick-prev", "iconClass": "la la-angle-double-left" },
+                                          "nextArrow": {"buttonClass": "slick-btn slick-next", "iconClass": "la la-angle-double-right" }
+                                      }'
+                                      >
+                                          <div class="product-image">
+                                              <div class="product-image--holder">
+                                                  <a href="/shop/item/{{product.slug}}">
+                                                      <img src="{{product.image.url}}" alt="{{product.name}}" class="primary-image">
+                                                  </a>
+                                              </div>
+
+                                          </div>
+                                          <div class="product-image">
+                                              <div class="product-image--holder">
+                                                  <a href="/shop/item/{{product.slug}}">
+                                                      <img src="{{product.image.url}}" alt="{{product.name}}" class="primary-image">
+                                                  </a>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-6">
+                                      <div class="modal-box product-summary">
+
+                                          <h3 class="product-title mb--20">{{product.name}}</h3>
+                                          <p class="product-short-description mb--25">{{product.description}}</p>
+                                          <div class="product-price-wrapper mb--25">
+                                              <span class="money">{{product.price|currency}}</span>
+
+                                          </div>
+
+                                          <div class="product-action d-flex flex-sm-row flex-column align-items-sm-center align-items-start mb--30">
+                                            {% if product|is_in_cart:request.session.cart %}
+                                              <div class="quantity-wrapper d-flex align-items-center mr--30 mr-xs--0 mb-xs--30">
+                                                  <label class="quantity-label" for="quick-qty">Quantity:</label>
+
+
+                                                    <form action="/cart#{{product.id}}"  method="post">
+                                                        {% csrf_token %}
+                                                        <input hidden type="text" name='product' value='{{product.id}}'>
+                                                        <input hidden type="text" name='remove' value='True'>
+                                                      <button type="submit" class="btn btn-sm" value=" - " style="padding:10px; padding-top:0px; padding-bottom:0px; font-size:12px;">-</button>
+                                                    </form>
+
+                                                        <a href="#" class="btn btn-sm" style="padding:4px; padding-top:0px; padding-bottom:0px; font-size:12px;">
+                                                          {{product|cart_quantity:request.session.cart}} in Cart
+                                                        </a>
+
+                                                      <form action="/cart#{{product.id}}" method="post">
+                                                          {% csrf_token %}
+                                                          <input hidden type="text" name='product' value='{{product.id}}'>
+                                                        <button type="submit" class="btn btn-sm" value=" + " style="padding:4px; padding-top:0px; padding-bottom:0px; font-size:12px;">+</button>
+                                                        </form>
+
+                                              </div>
+                                            {% else %}
+
+                                            <form action="/cart#{{product.id}}" method="POST" class="btn-block">
+                                              {% csrf_token %}
+                                              <input hidden type="text" name='product' value='{{product.id}}'>
+                                              <button type="submit" class="btn btn-size-sm btn-shape-square">
+                                                  Add To Cart
+                                              </button>
+                                            </form>
+                                            {% endif %}
+                                          </div>
+
+                                      </div>
+                                  </div>
+
+                                  {% endfor %}
+                                  {% else %}
+                                  <div class="col-xl-12 col-sm-6 mb--50 text-center">
+                                    <i>Could not find any product(s) matches </i>
+                                  </div>
+                                  {% endif %}
+
+                              </div><!-- end view of product-->
+
+
+                            </div>
+
+                        </div>
+                        <div class="col-xl-3 col-lg-4 order-lg-1">
+                            <aside class="shop-sidebar">
+                                <div class="shop-widget mb--40">
+                                    <h3 class="widget-title mb--25">Category</h3>
+                                    <ul class="widget-list category-list">
+                                        <li>
+                                            <a href="/shop">
+                                                <span class="category-title">All</span>
+                                                <i class="fa fa-angle-double-right"></i>
+                                            </a>
+                                        </li>
+
+                                      {% for category in categories %}
+                                        <li>
+                                            <a href="/shop?category={{category.id}}">
+                                                <span class="category-title">{{category.name}}</span>
+                                                <i class="fa fa-angle-double-right"></i>
+                                            </a>
+                                        </li>
+                                       {% endfor %}
+                                    </ul>
+                                </div>
+
+
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Content Wrapper Start -->
+
+
+
+{% endblock %}
