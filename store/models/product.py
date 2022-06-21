@@ -1,11 +1,10 @@
 from django.db import models
-from django.template.defaultfilters import slugify
 from .category import Category
 
 
 class Products(models.Model):
     name = models.CharField(max_length=60)
-    slug = models.SlugField(null=False, unique=True)
+    slug = models.SlugField(null=True, unique=True)
     price = models.IntegerField(default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
     description = models.TextField(default='-', blank=True, null=True)
