@@ -11,9 +11,10 @@ class IndexContact(View):
         email = request.POST.get('email')
         name = request.POST.get('name')
         message = request.POST.get('message')
+        subject = request.POST.get('title')
 
         # Send email here
-        subject = f"Zelig Interiors Form Send By {name}"
+        subject = f"Qoute: {subject} From {name}"
         message = message
         email_from = email
         recipient_list = [settings.EMAIL_HOST_USER,]
@@ -26,7 +27,7 @@ class IndexContact(View):
         try:
           send_mail(subject, message, email_from, recipient_list)
           data = {
-            "msg": "Thank you for your email, Will will revert back to as soon as possible",
+            "msg": "Thank you for your email, We will get back to as soon as possible",
             "status": "success",
             'contact_info': contact
           }

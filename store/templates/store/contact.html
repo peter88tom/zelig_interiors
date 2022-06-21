@@ -68,9 +68,10 @@
                                 </div>
                                 <form action="/contact" method="post" class="form">
                                   {% csrf_token %}
+                                    <input type="text" name="subject" id="subject" class="form__input mb--30" placeholder="Subject*" required="">
                                     <input type="email" name="email" id="con_email" class="form__input mb--30" placeholder="Email*" required="">
                                     <input type="text" name="name" id="con_name" class="form__input mb--30" placeholder="Name*" required="">
-                                    <textarea class="form__input form__input--textarea mb--30" placeholder="Message" id="con_message" name="message" required=""></textarea>
+                                    <textarea class="form__input form__input--textarea mb--30" placeholder="Message*" id="con_message" name="message" required=""></textarea>
                                     <button type="submit" class="btn btn-shape-round">Send Request</button>
                                     <div class="form__output"></div>
                                 </form>

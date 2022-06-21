@@ -1,0 +1,54 @@
+{% load static %}
+<!--        <div class="modal fade product-modal" id="request-quote" tabindex="-1" role="dialog" aria-hidden="true">-->
+<!--          <div class="modal-dialog" role="document">-->
+<!--            <div class="modal-content">-->
+<!--              <div class="modal-body">-->
+<!--                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">-->
+<!--                  <span aria-hidden="true"><i class="la la-remove"></i></span>-->
+<!--                </button>-->
+<!--                <div class="row">-->
+<!--      -->
+
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="request-quote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Request Quotation</h2>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true"><i class="la la-remove"></i></span>
+                </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+
+          <div class="col-lg-12">
+
+             <form action="/contact" method="post" class="form">
+                    {% csrf_token %}
+               <input type="text" name="subject" id="subject" class="form__input mb--30" placeholder="Subject*" required="">
+                <input type="email" name="email" id="con_email" class="form__input mb--30" placeholder="Email*" required="">
+                <input type="text" name="name" id="con_name" class="form__input mb--30" placeholder="Name*" required="">
+                <textarea class="form__input form__input--textarea mb--30" placeholder="Message*" id="con_message" name="message" required=""></textarea>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-sm btn-secondary">Send</button>
+         </form>
+      </div>
+    </div>
+  </div>
+</div>
