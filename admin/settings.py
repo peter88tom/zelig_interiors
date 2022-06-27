@@ -24,7 +24,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 CUSTOM_APPS = [
-  'store'
+  'store',
+  'django_social_share',
 ]
 
 INSTALLED_APPS = [
@@ -61,6 +62,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'store.views.cart_items.get',
                 'store.views.contact.get_contact',
+                'store.views.shop.get_menu_category',
             ],
         },
     },

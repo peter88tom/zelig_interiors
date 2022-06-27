@@ -4,21 +4,14 @@
 {% load cart %}
 {% load custom_filter %}
 
-<!-- Breadcrumb area Start -->
-        <section class="page-title-area bg-image ptb--80" data-bg-image="{% static 'assets/img/casa-banner.png' %}">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <h1 class="page-title">Contact Us</h1>
-                        <ul class="breadcrumb">
-                            <li><a href="{% url 'homepage' %}">Home</a></li>
-                            <li class="current"><span>Contact Us</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Breadcrumb area End -->
+{% include 'partials/slider.html' %}
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/" style="color:blue">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Contact</li>
+  </ol>
+</nav>
 
         <!-- Main Content Wrapper Start -->
         <main class="main-content-wrapper">

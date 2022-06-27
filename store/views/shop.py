@@ -46,3 +46,14 @@ def category(request):
 
     print('you are : ', request.session.get('email'))
     return render(request, 'store/shop.html', data)
+
+
+def get_menu_category(request):
+  try:
+    categories = Category.get_all_categories()
+  except Category.DoesNotExist:
+    categories = {}
+
+  return {
+    "menu_categories": categories,
+  }

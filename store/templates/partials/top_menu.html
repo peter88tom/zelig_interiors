@@ -20,18 +20,32 @@
                                                         <span class="mm-text">Home</span>
                                                     </a>
                                                 </li>
-                                                <li class="mainmenu__item menu-item-has-children megamenu-holder">
+
+
+                                              <li class="mainmenu__item menu-item-has-children">
                                                     <a href="{% url 'shop' %}" class="mainmenu__link">
                                                         <span class="mm-text">Shop</span>
                                                     </a>
+                                                    <ul class="sub-menu">
+                                                      {% for category in menu_categories %}
+                                                        <li>
+                                                            <a href="/shop?category={{category.id}}">
+                                                                <span class="mm-text">{{category.name}}</span>
+                                                            </a>
+                                                        </li>
+                                                      {% endfor %}
 
+                                                    </ul>
                                                 </li>
+
+
 
                                                 <li class="mainmenu__item">
                                                     <a href="{% url 'contact' %}" class="mainmenu__link">
                                                         <span class="mm-text">Contact Us</span>
                                                     </a>
                                                 </li>
+                                              <!--
                                             {% if request.session.customer %}
                                                <li class="mainmenu__item">
                                                     <a href="{% url 'my-account' %}" class="mainmenu__link">
@@ -52,13 +66,16 @@
                                                 </li>
 
                                         {% endif %}
+                                        -->
 
                                             </ul>
                                         </nav>
                                     </div>
+
+
                                     <div class="header__main-right">
                                         <div class="header-toolbar-wrap">
-                                            <div class="header-toolbar">
+                                            <!--<div class="header-toolbar">
                                                 <div class="header-toolbar__item header-toolbar--search-btn">
                                                     <a href="#searchForm" class="header-toolbar__btn toolbar-btn">
                                                         <i class="la la-search"></i>
@@ -69,7 +86,7 @@
                                                         <i class="la la-shopping-cart"></i>
                                                         <span>{{request.session.cart.keys|length}}</span>
                                                     </a>
-                                                </div>
+                                                </div>-->
                                                 <div class="header-toolbar__item d-block d-lg-none">
                                                     <a href="#offcanvasMenu" class="header-toolbar__btn toolbar-btn menu-btn">
                                                         <div class="hamburger-icon">
@@ -85,6 +102,8 @@
                                             </div>
                                         </div>
                                     </div>
+
+
                                 </div>
                             </div>
                         </div>
