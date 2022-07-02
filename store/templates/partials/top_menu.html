@@ -1,3 +1,4 @@
+
 {% load static %}
             <div class="header__inner fixed-header" style="background-color: #30628b; color:white">
                 <div class="header__main">
@@ -22,21 +23,13 @@
                                                 </li>
 
 
-                                              <li class="mainmenu__item menu-item-has-children">
-                                                    <a href="{% url 'shop' %}" class="mainmenu__link">
-                                                        <span class="mm-text">Shop</span>
+                                             {% for category in menu_categories %}
+                                                <li class="mainmenu__item">
+                                                    <a href="/shop?category={{category.id}}" class="mainmenu__link">
+                                                        <span class="mm-text">{{category.name}}</span>
                                                     </a>
-                                                    <ul class="sub-menu">
-                                                      {% for category in menu_categories %}
-                                                        <li>
-                                                            <a href="/shop?category={{category.id}}">
-                                                                <span class="mm-text">{{category.name}}</span>
-                                                            </a>
-                                                        </li>
-                                                      {% endfor %}
-
-                                                    </ul>
                                                 </li>
+                                       {% endfor %}
 
 
 
@@ -45,28 +38,6 @@
                                                         <span class="mm-text">Contact Us</span>
                                                     </a>
                                                 </li>
-                                              <!--
-                                            {% if request.session.customer %}
-                                               <li class="mainmenu__item">
-                                                    <a href="{% url 'my-account' %}" class="mainmenu__link">
-                                                        <span class="mm-text">My Account</span>
-                                                    </a>
-                                                </li>
-
-                                              <li class="mainmenu__item">
-                                                    <a href="{% url 'logout' %}" class="mainmenu__link">
-                                                        <span class="mm-text">Logout</span>
-                                                    </a>
-                                                </li>
-                                              {% else %}
-                                               <li class="mainmenu__item">
-                                                    <a href="{% url 'login' %}" class="mainmenu__link">
-                                                        <span class="mm-text">Login | Register</span>
-                                                    </a>
-                                                </li>
-
-                                        {% endif %}
-                                        -->
 
                                             </ul>
                                         </nav>
@@ -75,18 +46,7 @@
 
                                     <div class="header__main-right">
                                         <div class="header-toolbar-wrap">
-                                            <!--<div class="header-toolbar">
-                                                <div class="header-toolbar__item header-toolbar--search-btn">
-                                                    <a href="#searchForm" class="header-toolbar__btn toolbar-btn">
-                                                        <i class="la la-search"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="header-toolbar__item header-toolbar--minicart-btn">
-                                                    <a href="#miniCart" class="header-toolbar__btn toolbar-btn">
-                                                        <i class="la la-shopping-cart"></i>
-                                                        <span>{{request.session.cart.keys|length}}</span>
-                                                    </a>
-                                                </div>-->
+
                                                 <div class="header-toolbar__item d-block d-lg-none">
                                                     <a href="#offcanvasMenu" class="header-toolbar__btn toolbar-btn menu-btn">
                                                         <div class="hamburger-icon">

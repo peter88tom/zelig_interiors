@@ -2,7 +2,7 @@
                 <a href="" class="btn-close">
                     <i class="la la-remove"></i>
                 </a>
-                <nav class="offcanvas-navigation">
+                <nav class="offcanvas-navigation" style="font-size:9px;">
                     <ul class="offcanvas-menu">
                        <li class="mainmenu__item menu-item-has-children">
                                                     <a href="{% url 'homepage' %}" class="mainmenu__link">
@@ -11,21 +11,15 @@
                                                 </li>
 
 
-                                            <li class="mainmenu__item menu-item-has-children">
-                                                    <a href="{% url 'shop' %}" class="mainmenu__link">
-                                                        <span class="mm-text">Shop</span>
-                                                    </a>
-                                                    <ul class="sub-menu">
-                                                      {% for category in menu_categories %}
-                                                        <li>
-                                                            <a href="/shop?category={{category.id}}">
-                                                                <span class="mm-text">{{category.name}}</span>
-                                                            </a>
-                                                        </li>
-                                                      {% endfor %}
 
-                                                    </ul>
+                                           {% for category in menu_categories %}
+                                                <li class="mainmenu__item">
+                                                    <a href="/shop?category={{category.id}}" class="mainmenu__link">
+                                                        <span class="mm-text">{{category.name}}</span>
+                                                    </a>
                                                 </li>
+                                       {% endfor %}
+
 
                                                 <li class="mainmenu__item">
                                                     <a href="{% url 'contact' %}" class="mainmenu__link">
@@ -33,28 +27,7 @@
                                                     </a>
                                                 </li>
 
-                                    <!--
-                                            {% if request.session.customer %}
-                                               <li class="mainmenu__item">
-                                                    <a href="{% url 'my-account' %}" class="mainmenu__link">
-                                                        <span class="mm-text">My Account</span>
-                                                    </a>
-                                                </li>
 
-                                              <li class="mainmenu__item">
-                                                    <a href="{% url 'logout' %}" class="mainmenu__link">
-                                                        <span class="mm-text">Logout</span>
-                                                    </a>
-                                                </li>
-                                              {% else %}
-                                               <li class="mainmenu__item">
-                                                    <a href="{% url 'login' %}" class="mainmenu__link">
-                                                        <span class="mm-text">Login | Register</span>
-                                                    </a>
-                                                </li>
-
-                                        {% endif %}
-                                        -->
                     </ul>
 
                 </nav>
